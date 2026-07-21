@@ -1,143 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Feliz Cumpleaños Paloma ❤️</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-
-background:linear-gradient(180deg,#0f172a,#4a154b);
-font-family:Arial,Helvetica,sans-serif;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-overflow:hidden;
-
-}
-
-
-.card{
-
-width:90%;
-max-width:420px;
-padding:30px;
-border-radius:20px;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(12px);
-text-align:center;
-box-shadow:0 0 25px rgba(0,0,0,.4);
-
-}
-
-
-h1{
-
-margin-bottom:20px;
-color:#ffd166;
-
-}
-
-
-p{
-
-font-size:18px;
-line-height:1.6;
-
-}
-
-
-button{
-
-margin-top:25px;
-padding:14px 28px;
-border:none;
-border-radius:30px;
-background:#e91e63;
-color:white;
-font-size:17px;
-cursor:pointer;
-
-}
-
-
-button:hover{
-
-background:#c2185b;
-
-}
-
-
-.small{
-
-background:#777;
-
-}
-
-
-.small:hover{
-
-background:#555;
-
-}
-
-
-.heart{
-
-position:fixed;
-font-size:22px;
-animation:fall 8s linear infinite;
-
-}
-
-
-@keyframes fall{
-
-0%{
-transform:translateY(-100px);
-opacity:1;
-}
-
-100%{
-transform:translateY(110vh);
-opacity:0;
-}
-
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<div class="card" id="card"></div>
-
-
 <script>
+
+const urlGoogle =
+"https://script.google.com/macros/s/AKfycbxi8Gg0b5-kyihvPvlyxTqjZgEtbEE64nYl3lWhTl-QPywsg4gkCSXDdKkQ04HnN29lqw/exec";
+
 
 
 const paginas=[
 
-
 {
 titulo:"✨ Hola Paloma ✨",
-texto:"Tengo una pequeña invitación para ti."
+texto:"Tengo una pequeña invitacion para ti."
 },
 
 
@@ -164,7 +36,6 @@ titulo:"🍷 Invitación",
 texto:"¿Aceptarías acompañarme a cenar esta noche para celebrar tu cumpleaños?"
 }
 
-
 ];
 
 
@@ -174,11 +45,10 @@ let paso=0;
 
 function mostrar(){
 
-
 let html="";
 
 
-if(paso<paginas.length){
+if(paso < paginas.length){
 
 
 html=`
@@ -187,12 +57,12 @@ html=`
 
 <p>${paginas[paso].texto}</p>
 
-
 <button onclick="siguiente()">
 Continuar ❤️
 </button>
 
 `;
+
 
 
 }else{
@@ -244,45 +114,18 @@ mostrar();
 
 
 
+// ==============================
+// RESPUESTA ACEPTADA
+// ==============================
+
 function acepto(){
 
 
-// URL de Google Apps Script
+enviarRespuesta(
+"Paloma",
+"Aceptó la invitación ❤️"
+);
 
-const url = "https://script.google.com/macros/s/AKfycbxi8Gg0b5-kyihvPvlyxTqjZgEtbEE64nYl3lWhTl-QPywsg4gkCSXDdKkQ04HnN29lqw/exec";
-
-
-
-// Enviar respuesta a Google Sheets
-
-fetch(url,{
-
-method:"POST",
-
-mode:"no-cors",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
-body:JSON.stringify({
-
-persona:"Paloma",
-
-respuesta:"Aceptó la invitación ❤️",
-
-fecha:new Date().toLocaleString()
-
-})
-
-});
-
-
-
-
-// Mostrar mensaje final
 
 
 document.getElementById("card").innerHTML=`
@@ -292,9 +135,7 @@ document.getElementById("card").innerHTML=`
 
 
 <p>
-
 Me hace muy feliz que hayas aceptado.
-
 </p>
 
 
@@ -303,7 +144,7 @@ Me hace muy feliz que hayas aceptado.
 
 <h2>
 
-🌹 Saldremos a las
+🌹 Hoy pasaré por ti
 
 <br><br>
 
@@ -316,9 +157,7 @@ Me hace muy feliz que hayas aceptado.
 
 
 <p>
-
 Prepárate para una noche muy especial.
-
 </p>
 
 
@@ -326,13 +165,9 @@ Prepárate para una noche muy especial.
 
 
 <b>
-
 Con cariño,
-
 <br>
-
 Mauricio ❤️
-
 </b>
 
 
@@ -343,7 +178,19 @@ Mauricio ❤️
 
 
 
+
+// ==============================
+// RESPUESTA NO PUEDE
+// ==============================
+
 function nopuedo(){
+
+
+enviarRespuesta(
+"Paloma",
+"No pudo asistir a la invitación 🤍"
+);
+
 
 
 document.getElementById("card").innerHTML=`
@@ -384,12 +231,63 @@ Mauricio ❤️
 
 
 
+// ==============================
+// ENVÍO A GOOGLE APPS SCRIPT
+// ==============================
+
+function enviarRespuesta(persona,respuesta){
+
+
+fetch(urlGoogle, {
+
+
+method:"POST",
+
+
+mode:"no-cors",
+
+
+headers:{
+
+
+"Content-Type":"application/json"
+
+
+},
+
+
+body:JSON.stringify({
+
+
+persona:persona,
+
+
+respuesta:respuesta,
+
+
+fecha:new Date().toLocaleString()
+
+
+})
+
+
+});
+
+
+}
+
+
+
+
 mostrar();
 
 
 
 
-// Corazones cayendo
+// ==============================
+// LLUVIA DE CORAZONES
+// ==============================
+
 
 setInterval(function(){
 
@@ -425,8 +323,3 @@ h.remove();
 
 
 </script>
-
-
-</body>
-
-</html>
