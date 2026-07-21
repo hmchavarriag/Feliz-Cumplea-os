@@ -1,0 +1,25 @@
+<!doctype html><html lang='es'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Para Paloma ❤️</title><style>
+body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(180deg,#1b1b3a,#5b2245);color:#fff;display:flex;justify-content:center;align-items:center;min-height:100vh;overflow:hidden}
+#box{width:90%;max-width:380px;background:rgba(255,255,255,.12);padding:24px;border-radius:20px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.4)}
+button{padding:12px 22px;border:none;border-radius:25px;background:#e91e63;color:#fff;font-size:16px;margin-top:18px}
+h1{margin-top:0}.petal{position:fixed;top:-20px;font-size:18px;animation:f 8s linear forwards}@keyframes f{to{transform:translateY(110vh) rotate(360deg);opacity:.2}}
+</style></head><body><div id='box'></div><script>
+var steps=[
+["✨ Hola, Paloma","Tengo algo muy especial para ti..."],
+["🎂 ¡Feliz Cumpleaños!","Deseo que este nuevo año esté lleno de sonrisas, salud y momentos inolvidables."],
+["❤️","Hay regalos que se envuelven... y otros que se viven."],
+["🍷 Invitación","¿Aceptarías cenar conmigo esta noche para celebrar tu cumpleaños?"]
+],i=0,b=document.getElementById('box');
+function draw(){
+ if(i<steps.length){
+  b.innerHTML="<h1>"+steps[i][0]+"</h1><p>"+steps[i][1]+"</p><button onclick='next()'>Continuar ❤️</button>";
+ }else{
+  b.innerHTML="<h1>¿Aceptas?</h1><button onclick='ok()'>❤️ Sí, acepto</button><br><button style='background:#777' onclick='no()'>🤍 No puedo</button>";
+ }}
+function next(){i++;draw();}
+function ok(){b.innerHTML="<h1>💖 ¡Gracias, Paloma!</h1><p>Me hace muy feliz.</p><h2>🌹 Hoy pasaré por ti a las <b>7:00 p. m.</b></h2><p>Prepárate para una noche muy especial.</p><p><b>Con cariño,<br>Mauricio ❤️</b></p>";}
+function no(){b.innerHTML="<h1>🌷</h1><p>No pasa nada. Solo quería desearte un muy feliz cumpleaños. ❤️</p><p><b>Mauricio</b></p>";}
+draw();
+setInterval(function(){var d=document.createElement('div');d.className='petal';d.textContent=Math.random()>.5?'🌸':'🌹';d.style.left=(Math.random()*100)+'vw';document.body.appendChild(d);setTimeout(function(){d.remove()},8000)},700);
+</script></body></html>
