@@ -1,51 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Feliz Cumpleaños Paloma ❤️</title>
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+body{
+
+background:linear-gradient(180deg,#0f172a,#4a154b);
+font-family:Arial,Helvetica,sans-serif;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+
+}
+
+
+.card{
+
+width:90%;
+max-width:420px;
+padding:30px;
+border-radius:20px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(12px);
+text-align:center;
+box-shadow:0 0 25px rgba(0,0,0,.4);
+
+}
+
+
+h1{
+
+margin-bottom:20px;
+color:#ffd166;
+
+}
+
+
+p{
+
+font-size:18px;
+line-height:1.6;
+
+}
+
+
+button{
+
+margin-top:25px;
+padding:14px 28px;
+border:none;
+border-radius:30px;
+background:#e91e63;
+color:white;
+font-size:17px;
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+background:#c2185b;
+
+}
+
+
+.small{
+
+background:#777;
+
+}
+
+
+.small:hover{
+
+background:#555;
+
+}
+
+
+.heart{
+
+position:fixed;
+font-size:22px;
+animation:fall 8s linear infinite;
+
+}
+
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-100px);
+opacity:1;
+
+}
+
+
+100%{
+
+transform:translateY(110vh);
+opacity:0;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="card" id="card"></div>
+
+
+
 <script>
 
+
+// ==============================
+// URL GOOGLE APPS SCRIPT
+// ==============================
+
 const urlGoogle =
+
 "https://script.google.com/macros/s/AKfycbxi8Gg0b5-kyihvPvlyxTqjZgEtbEE64nYl3lWhTl-QPywsg4gkCSXDdKkQ04HnN29lqw/exec";
 
 
 
+
+// ==============================
+// PAGINAS
+// ==============================
+
+
 const paginas=[
 
+
 {
+
 titulo:"✨ Hola Paloma ✨",
+
 texto:"Tengo una pequeña invitacion para ti."
+
 },
 
 
 {
+
 titulo:"🎂 ¡Quiero Celebrar tú Cumpleaños! 🎂",
+
 texto:"Hoy deseo que este nuevo año de vida esté lleno de felicidad, salud, sonrisas y muchos momentos inolvidables."
+
 },
 
 
 {
+
 titulo:"❤️",
+
 texto:"Hay regalos que pueden envolverse... pero hay otros que simplemente se viven."
+
 },
 
 
 {
+
 titulo:"🌹",
+
 texto:"Y precisamente hoy quisiera regalarte uno de esos momentos."
+
 },
 
 
 {
+
 titulo:"🍷 Invitación",
+
 texto:"¿Aceptarías acompañarme a cenar esta noche para celebrar tu cumpleaños?"
+
 }
 
+
 ];
+
 
 
 let paso=0;
 
 
 
+
 function mostrar(){
 
+
 let html="";
+
 
 
 if(paso < paginas.length){
@@ -58,14 +231,17 @@ html=`
 <p>${paginas[paso].texto}</p>
 
 <button onclick="siguiente()">
+
 Continuar ❤️
+
 </button>
 
 `;
 
 
+}
 
-}else{
+else{
 
 
 html=`
@@ -74,12 +250,17 @@ html=`
 
 
 <p>
+
 Me haría muy feliz compartir esta noche contigo.
+
 </p>
 
 
+
 <button onclick="acepto()">
+
 ❤️ Sí, acepto
+
 </button>
 
 
@@ -87,7 +268,9 @@ Me haría muy feliz compartir esta noche contigo.
 
 
 <button class="small" onclick="nopuedo()">
+
 🤍 No puedo
+
 </button>
 
 `;
@@ -95,10 +278,12 @@ Me haría muy feliz compartir esta noche contigo.
 }
 
 
+
 document.getElementById("card").innerHTML=html;
 
 
 }
+
 
 
 
@@ -114,28 +299,34 @@ mostrar();
 
 
 
+
 // ==============================
 // RESPUESTA ACEPTADA
 // ==============================
+
 
 function acepto(){
 
 
 enviarRespuesta(
+
 "Paloma",
+
 "Aceptó la invitación ❤️"
+
 );
 
 
 
 document.getElementById("card").innerHTML=`
 
-
 <h1>💖 ¡Gracias, Paloma!</h1>
 
 
 <p>
+
 Me hace muy feliz que hayas aceptado.
+
 </p>
 
 
@@ -157,7 +348,9 @@ Me hace muy feliz que hayas aceptado.
 
 
 <p>
+
 Prepárate para una noche muy especial.
+
 </p>
 
 
@@ -165,11 +358,14 @@ Prepárate para una noche muy especial.
 
 
 <b>
-Con cariño,
-<br>
-Mauricio ❤️
-</b>
 
+Con cariño,
+
+<br>
+
+Mauricio ❤️
+
+</b>
 
 `;
 
@@ -183,18 +379,21 @@ Mauricio ❤️
 // RESPUESTA NO PUEDE
 // ==============================
 
+
 function nopuedo(){
 
 
 enviarRespuesta(
+
 "Paloma",
+
 "No pudo asistir a la invitación 🤍"
+
 );
 
 
 
 document.getElementById("card").innerHTML=`
-
 
 <h1>🌷</h1>
 
@@ -223,7 +422,6 @@ Mauricio ❤️
 
 </b>
 
-
 `;
 
 }
@@ -231,14 +429,16 @@ Mauricio ❤️
 
 
 
+
 // ==============================
-// ENVÍO A GOOGLE APPS SCRIPT
+// ENVIO A GOOGLE SHEETS + CORREO
 // ==============================
+
 
 function enviarRespuesta(persona,respuesta){
 
 
-fetch(urlGoogle, {
+fetch(urlGoogle,{
 
 
 method:"POST",
@@ -251,7 +451,6 @@ headers:{
 
 
 "Content-Type":"application/json"
-
 
 },
 
@@ -267,7 +466,6 @@ respuesta:respuesta,
 
 fecha:new Date().toLocaleString()
 
-
 })
 
 
@@ -279,13 +477,15 @@ fecha:new Date().toLocaleString()
 
 
 
+
 mostrar();
 
 
 
 
+
 // ==============================
-// LLUVIA DE CORAZONES
+// CORAZONES
 // ==============================
 
 
@@ -298,7 +498,7 @@ let h=document.createElement("div");
 h.className="heart";
 
 
-h.innerHTML=Math.random()>0.5?"❤️":"🌹";
+h.innerHTML=Math.random()>0.5 ? "❤️" : "🌹";
 
 
 h.style.left=Math.random()*100+"vw";
@@ -322,4 +522,10 @@ h.remove();
 },600);
 
 
+
 </script>
+
+
+</body>
+
+</html>
